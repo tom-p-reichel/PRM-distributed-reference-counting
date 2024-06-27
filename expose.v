@@ -17,7 +17,7 @@ Set Asymmetric Patterns.
 Unset Standard Proposition Elimination Names.
 
 Require Export ZArith.
-Require Export Omega.
+Require Export Lia.
 
 
 
@@ -82,7 +82,7 @@ Lemma Zdiv2_positive :
 Proof.
   simple destruct x.
   simpl in |- *.
-  omega.
+  lia.
   
   simpl in |- *.
   simple destruct p.
@@ -121,7 +121,7 @@ Proof.
   generalize H0.
   rewrite BinInt.Zpos_xO.
   intro.
-  omega.
+  lia.
   
   auto.
   
@@ -141,7 +141,7 @@ Proof.
   simple induction t.
   simpl in |- *.
   intros.
-  omega.
+  lia.
   
   simpl in |- *.
   intros.
@@ -157,7 +157,7 @@ Lemma decreasing_measure :
 Proof.
   simple induction t.
   simpl in |- *; intros.
-  omega.
+  lia.
   simpl in |- *.
   intros.
   apply x_gt_Zdiv2.
@@ -224,11 +224,11 @@ Proof.
 intros; apply Z_of_nat_prop.
 intro; apply recur2 with (P := fun n : nat => P (Z_of_nat n)).
 intros; apply H.
-omega.
+lia.
 
 intro; intro;
  apply Z_of_nat_prop with (P := fun y : Z => (y < Z_of_nat n0)%Z -> P y).
-intros; apply H1; omega.
+intros; apply H1; lia.
 
 trivial.
 
@@ -248,23 +248,23 @@ case (Zeven.Zeven_odd_dec x0); intro.
 apply H0.
 auto.
 
-omega.
+lia.
 
 apply H4.
-apply Zge_le; apply Zdiv2_positive; [ trivial | omega ].
+apply Zge_le; apply Zdiv2_positive; [ trivial | lia ].
 
-apply Zgt_lt; apply x_gt_Zdiv2; [ trivial | omega ].
+apply Zgt_lt; apply x_gt_Zdiv2; [ trivial | lia ].
 
 apply H1.
 trivial.
 
-omega.
+lia.
 
-apply H4; omega.
+apply H4; lia.
 
 rewrite <- e; trivial.
 
-omega.
+lia.
 Qed.
 
 Lemma legal_x_x : forall x : Z, legal x (mkconfig x).
@@ -352,7 +352,7 @@ split with (mkconfig x).
 split.
 apply legal_x_x.
 
-apply blocked; simpl in |- *; omega.
+apply blocked; simpl in |- *; lia.
 
 split with (mkconfig 0%Z); split.
 apply fin_O; auto with arith.
