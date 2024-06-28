@@ -33,7 +33,7 @@ Section INVARIANT1.
 Lemma invariant1_init :
  sigma_send_table send_init =
  (sigma_receive_table rec_init + sigma_weight bag_init - 1)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   unfold send_init, rec_init, bag_init in |- *.
   unfold sigma_send_table, sigma_receive_table, sigma_weight in |- *.
   unfold sigma_table in |- *.
@@ -46,7 +46,7 @@ Proof.
   case (eq_site_dec owner owner); intro.
   unfold Int in |- *.
   rewrite sigma_but_null.
-  omega.
+  auto with *.
   
   intros.
   case (eq_site_dec s owner).
@@ -77,7 +77,7 @@ Lemma invariant1_inductive :
  (sigma_receive_table (rt (transition c t)) +
   sigma_weight (bm (transition c t)) - 1)%Z.
 
-Proof.
+Proof. (* This proof was automatically repaired. *)
   simple induction t.
 
   (* 1 *)
@@ -86,7 +86,7 @@ Proof.
   rewrite sigma_weight_post_message.
   rewrite sigma_inc_send_table.
   unfold cardinal_count in |- *; unfold fun_sum in |- *; simpl in |- *.
-  rewrite H0; omega.
+  rewrite H0; auto with *.
 
   (* 2 *)
   
@@ -94,7 +94,7 @@ Proof.
   rewrite (sigma_weight_collect_message dec).
   rewrite sigma_dec_send_table.
   unfold cardinal_count in |- *; unfold fun_sum in |- *; simpl in |- *.
-  rewrite H0; omega.
+  rewrite H0; auto with *.
   auto.
 
   (* 3 *)
@@ -104,7 +104,7 @@ Proof.
   rewrite sigma_inc_send_table.
   rewrite sigma_weight_collect_message with (m := inc_dec s3).
   unfold cardinal_count in |- *; unfold fun_sum in |- *; simpl in |- *.
-  rewrite H0; omega.
+  rewrite H0; auto with *.
   auto.
 
   (* 4 *)
@@ -113,7 +113,7 @@ Proof.
   rewrite sigma_weight_post_message.
   rewrite sigma_weight_collect_message with (m := copy).
   unfold cardinal_count in |- *; unfold fun_sum in |- *; simpl in |- *.
-  rewrite H0; omega.
+  rewrite H0; auto with *.
   auto.
 
   (* 5 *)
@@ -122,7 +122,7 @@ Proof.
   rewrite sigma_weight_collect_message with (m := copy).
   rewrite sigma_set_receive_table.
   unfold cardinal_count in |- *; unfold fun_sum in |- *; simpl in |- *.
-  rewrite H0; omega.
+  rewrite H0; auto with *.
   auto.
   auto.
 
@@ -133,7 +133,7 @@ Proof.
   rewrite sigma_weight_collect_message with (m := copy).
   rewrite sigma_set_receive_table.
   unfold cardinal_count in |- *; unfold fun_sum in |- *; simpl in |- *.
-  rewrite H0; omega.
+  rewrite H0; auto with *.
   auto.
   auto.
   
@@ -143,7 +143,7 @@ Proof.
   rewrite sigma_weight_post_message.
   rewrite sigma_reset_receive_table.
   unfold cardinal_count in |- *; unfold fun_sum in |- *; simpl in |- *.
-  rewrite H0; omega.
+  rewrite H0; auto with *.
   auto.
 Qed.
 

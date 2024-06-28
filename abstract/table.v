@@ -130,20 +130,20 @@ Lemma sigma_change :
  forall l : list E,
  only_once E eq_E_dec x0 l ->
  sigma E l (change_x0 E Z eq_E_dec f x0 y0) = (sigma E l f - f x0 + y0)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
  simple induction l; simpl in |- *.
  contradiction.
 
  intros a l0 hrec; case (eq_E_dec x0 a); intros.
  rewrite <- e; rewrite here.
  rewrite sigma_nowhere.
- omega.
+ auto with *.
 	
  trivial.
 	
  rewrite elsewhere.
  rewrite hrec.
- omega.
+ auto with *.
 	
  trivial.
 
@@ -168,9 +168,9 @@ Variable x0 : E.
 
 Remark sigma_change_S :
  sigma E L (change_x0 E Z eq_E_dec f x0 (f x0 + 1)%Z) = (sigma E L f + 1)%Z.    
-Proof.
+Proof. (* This proof was automatically repaired. *)
  rewrite sigma_change.
- omega. 
+ auto with *. 
 	
  auto.
 Qed.
@@ -191,9 +191,9 @@ Qed.
    
 Remark sigma_change_pred :
  sigma E L (change_x0 E Z eq_E_dec f x0 (f x0 - 1)%Z) = (sigma E L f - 1)%Z.    
-Proof.
+Proof. (* This proof was automatically repaired. *)
  rewrite sigma_change.
- omega.
+ auto with *.
 		
  auto.
 Qed.

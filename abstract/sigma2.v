@@ -69,7 +69,7 @@ Lemma sigma_table_change :
  only_once Site eq_site_dec s0 LS ->
  sigma_table Site LS Data f (update_table Site eq_site_dec Data t s0 d0) =
  (sigma_table Site LS Data f t - f s0 (t s0) + f s0 d0)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   unfold sigma_table in |- *.
   unfold update_table in |- *.
   elim LS.
@@ -90,7 +90,7 @@ Proof.
            | left _ => d0
            | right _ => t s
            end)) with (sigma Site l (fun s : Site => f s (t s))).
-  omega.
+  auto with *.
   
   apply sigma_simpl.
   intros x H1.
@@ -110,7 +110,7 @@ Proof.
   rewrite H.
   unfold change_x0 in |- *.
   rewrite case_ineq.
-  omega.
+  auto with *.
   
   auto.
   
@@ -129,10 +129,10 @@ Lemma sigma_table_change_aux :
  only_once Site eq_site_dec s0 LS ->
  (sigma_table Site LS Data f (update_table Site eq_site_dec Data t s0 d0) +
   f s0 (t s0) - f s0 d0)%Z = sigma_table Site LS Data f t.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intro H.
   rewrite sigma_table_change.
-  omega.
+  auto with *.
   auto.
 Qed.
 
@@ -150,7 +150,7 @@ Definition fun_minus_site (f1 f2 : Site -> Data -> Z)
 Lemma sigma_disjoint :
  sigma_table Site LS Data (fun_sum_site f1 f2) t =
  (sigma_table Site LS Data f1 t + sigma_table Site LS Data f2 t)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   unfold sigma_table, fun_sum_site in |- *.
   elim LS.
   simpl in |- *.
@@ -158,13 +158,13 @@ Proof.
   intros a l H.
   simpl in |- *.
   rewrite H.
-  omega.
+  auto with *.
 Qed.
 
 Lemma sigma_disjoint2 :
  sigma_table Site LS Data (fun_minus_site f1 f2) t =
  (sigma_table Site LS Data f1 t - sigma_table Site LS Data f2 t)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   unfold sigma_table, fun_minus_site in |- *.
   elim LS.
   simpl in |- *.
@@ -172,7 +172,7 @@ Proof.
   intros a l H.
   simpl in |- *.
   rewrite H.
-  omega.
+  auto with *.
 Qed.
 
 Definition Z_id (s : Site) (x : Z) := x.
@@ -188,7 +188,7 @@ Lemma sigma_same_table :
  forall t1 t2 : Site -> Z,
  sigma_table Site LS Z Z_id (fun_sum Site t1 t2) =
  (sigma_table Site LS Z Z_id t1 + sigma_table Site LS Z Z_id t2)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros t1 t2.
   unfold sigma_table in |- *.
   elim LS.
@@ -201,14 +201,14 @@ Proof.
   rewrite Z_id_reduce.
   rewrite Z_id_reduce.
   rewrite Z_id_reduce.
-  omega.
+  auto with *.
 Qed.
 
 Lemma sigma_same_table2 :
  forall t1 t2 : Site -> Z,
  sigma_table Site LS Z Z_id (fun_minus Site t1 t2) =
  (sigma_table Site LS Z Z_id t1 - sigma_table Site LS Z Z_id t2)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros t1 t2.
   unfold sigma_table in |- *.
   elim LS.
@@ -221,7 +221,7 @@ Proof.
   rewrite Z_id_reduce.
   rewrite Z_id_reduce.
   rewrite Z_id_reduce.
-  omega.
+  auto with *.
 Qed.
 
 Lemma sigma_table_simpl :
@@ -449,24 +449,24 @@ Remark sigma2_change_1 :
  (sigma Site l (change_x0 Site Z eq_site_dec a_fun s0 n0) + a_fun s0 - n0)%Z =
  sigma Site l a_fun.
 
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros l n0 H.
   rewrite sigma_change.
-  omega.
+  auto with *.
   auto.
 Qed.
 
 Remark add_reduce1 :
  forall x y z a b c : Z, (x + y - z - a + z)%Z = (x + y - a)%Z.
-Proof.
-intros; omega.
+Proof. (* This proof was automatically repaired. *)
+auto with *.
 Qed.
 
 Remark add_reduce2 :
  forall x y z a b c : Z,
  (x + y)%Z = (z + a - b + c)%Z -> (x + y)%Z = (a + z - b + c)%Z.
-Proof.
-intros; omega.
+Proof. (* This proof was automatically repaired. *)
+intros; rewrite H; auto with *.
 Qed.
 
 
@@ -478,7 +478,7 @@ Lemma sigma_table2_change :
  sigma2_table Site LS1 LS2 Data f
    (update2_table Site eq_site_dec Data t s0 s1 d0) =
  (sigma2_table Site LS1 LS2 Data f t - f s0 s1 (t s0 s1) + f s0 s1 d0)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   clear f1 f2. (* BUG DISCHARGE? *)
   intros H H0.
   generalize H.
@@ -510,7 +510,7 @@ Proof.
             (update2_table Site eq_site_dec Data t a s1 d0 s)))) with
    (sigma Site l (fun s : Site => sigma_table Site LS2 Data (f s) (t s))).
   unfold Z_id in |- *.
-  omega.
+  auto with *.
   
   apply sigma_simpl.
   intros x H4.
@@ -540,7 +540,7 @@ Proof.
    (sigma_table Site LS2 Data (f a)
       (update2_table Site eq_site_dec Data t s0 s1 d0 a)) with
    (sigma_table Site LS2 Data (f a) (t a)).
-  omega.
+  auto with *.
   
   apply sigma_table_simpl.
   unfold update2_table in |- *.
@@ -853,7 +853,7 @@ Hypothesis eq_E_dec : eq_dec E.
 Lemma sigma_strictly_positive :
  forall (f : E -> Z) (x : E) (l : list E),
  In x l -> (forall y : E, (f y >= 0)%Z) -> (f x > 0)%Z -> (sigma E l f > 0)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros f x l.
   elim l.
   simpl in |- *; intuition.
@@ -865,7 +865,7 @@ Proof.
   rewrite e.
   generalize (sigma_pos E f l0 H1).
   intro H3.
-  omega.
+  auto with *.
   
   intro n.
   generalize (H1 a).
@@ -879,7 +879,7 @@ Proof.
   intro H5.
   generalize (H H5 H1 H2).
   intro H6.
-  omega.
+  auto with *.
 Qed.
 
 Variable x0 : E.
@@ -890,7 +890,7 @@ Lemma sigma_but_strictly_positive :
  x <> x0 ->
  (forall y : E, (f y >= 0)%Z) ->
  (f x > 0)%Z -> (sigma_but E x0 eq_E_dec l f > 0)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros f x l.
   elim l.
   simpl in |- *; intuition.
@@ -916,7 +916,7 @@ Proof.
   rewrite e.
   generalize (sigma_but_pos E x0 eq_E_dec f l0 H2).
   intro H4.
-  omega.
+  auto with *.
   
   intro n0.
   elim H0; intro.
@@ -924,7 +924,7 @@ Proof.
   
   generalize (H H4 H1 H2 H3); intro.
   generalize (H2 a).
-  omega.
+  auto with *.
 Qed.
 
 End positive.
@@ -998,14 +998,14 @@ Variable f : Site -> Site -> Data -> Z.
 
 Remark add_reduce2_1 :
  forall x y z a : Z, x = a -> (x + (y + z))%Z = (a + y + z)%Z.
-Proof.
-intros; omega.
+Proof. (* This proof was automatically repaired. *)
+intros; rewrite H; auto with *.
 Qed.
 
 Remark add_reduce3 :
  forall x y z a : Z, x = a -> y = z -> (x + y)%Z = (a + z)%Z.
-Proof.
-intros; omega.
+Proof. (* This proof was automatically repaired. *)
+intros; rewrite H; rewrite H0; auto with *.
 Qed.
 
 
@@ -1018,7 +1018,7 @@ Lemma sigma2_sigma2_but_x_y :
  sigma2_table Site LS1 LS2 Data f t =
  (sigma2_but_table Site eq_site_dec LS1 LS2 Data s0 s1 f t +
   f s0 s1 (t s0 s1))%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intro s0.
   intro s1.
   intro t.
@@ -1100,7 +1100,7 @@ Proof.
   unfold sigma2_but_table in |- *.
   unfold sigma_table in |- *.
   unfold Z_id in |- *.
-  omega.
+  auto with *.
   
   generalize H0; simpl in |- *.
   case (eq_site_dec s0 a); intro.
@@ -1331,13 +1331,13 @@ Variable f : Site -> Site -> Data -> Z.
 
 
 Remark add_reduce17 : forall x y a : Z, x = y -> (x + a)%Z = (y + a)%Z.
-Proof.
-intros; omega.
+Proof. (* This proof was automatically repaired. *)
+intros; rewrite H; auto with *.
 Qed.
 
 Remark add_reduce18 : forall x y a : Z, x = y -> a = 0%Z -> x = (y + a)%Z.
-Proof.
-intros; omega.
+Proof. (* This proof was automatically repaired. *)
+intros; rewrite H; auto with *.
 Qed.
 
 

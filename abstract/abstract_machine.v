@@ -272,7 +272,7 @@ Lemma reduce_post_message_null :
  f m = 0%Z ->
  reduce Message f (Post_message Message m b s1 s2 s3 s4) =
  reduce Message f (b s3 s4).
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros m s1 s2 s3 s4 b H.
   case (eq_queue_dec s1 s3 s2 s4).
   intros a.
@@ -281,7 +281,7 @@ Proof.
   rewrite post_here.
   simpl in |- *.
   rewrite H.
-  omega.
+  auto with *.
   intro o.
   rewrite post_elsewhere.
   auto.
@@ -294,7 +294,7 @@ Lemma reduce_collect_message_null :
  f m = 0%Z ->
  reduce Message f (Collect_message Message b s1 s2 s3 s4) =
  reduce Message f (b s3 s4).
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros m s1 s2 s3 s4 b H H0.
   case (eq_queue_dec s1 s3 s2 s4).
   intros a.
@@ -303,7 +303,7 @@ Proof.
   rewrite collect_here.
   rewrite reduce_first_out with (m := m).
   rewrite H0.
-  omega.
+  auto with *.
   rewrite <- H1; rewrite <- H2; auto.
   intro o.
   rewrite collect_elsewhere.
@@ -344,14 +344,14 @@ Let Send_T := Site -> Z.
 Lemma sigma_inc_send_table :
  forall (t : Send_T) (s : Site),
  sigma_send_table (Inc_send_table t s) = (sigma_send_table t + 1)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros t s.
   unfold Inc_send_table in |- *.
   unfold sigma_send_table in |- *.
   rewrite
    (sigma_table_change Site eq_site_dec LS Z t s (t s + 1)%Z
       (fun (s : Site) (x : Z) => x)).
-  omega.
+  auto with *.
   apply finite_site.
 Qed.
 
@@ -359,14 +359,14 @@ Qed.
 Lemma sigma_dec_send_table :
  forall (t : Send_T) (s : Site),
  sigma_send_table (Dec_send_table t s) = (sigma_send_table t - 1)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros t s.
   unfold Dec_send_table in |- *.
   unfold sigma_send_table in |- *.
   rewrite
    (sigma_table_change Site eq_site_dec LS Z t s (t s - 1)%Z
       (fun (s : Site) (x : Z) => x)).
-  omega.
+  auto with *.
   apply finite_site.
 Qed.
 
@@ -391,14 +391,14 @@ Lemma sigma_set_receive_table :
  forall (t : Recv_T) (s : Site),
  t s = false ->
  sigma_receive_table (Set_rec_table t s) = (sigma_receive_table t + 1)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros t s H.
   unfold Set_rec_table in |- *.
   unfold sigma_receive_table in |- *.
   rewrite (sigma_table_change Site eq_site_dec LS bool t s true).
   rewrite H.
   simpl in |- *.
-  omega.
+  auto with *.
   apply finite_site.
 Qed.
 
@@ -408,14 +408,14 @@ Lemma sigma_reset_receive_table :
  forall (t : Recv_T) (s : Site),
  t s = true ->
  sigma_receive_table (Reset_rec_table t s) = (sigma_receive_table t - 1)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros t s H.
   unfold Reset_rec_table in |- *.
   unfold sigma_receive_table in |- *.
   rewrite (sigma_table_change Site eq_site_dec LS bool t s false).
   rewrite H.
   simpl in |- *.
-  omega.
+  auto with *.
   apply finite_site.
 Qed.
 

@@ -52,14 +52,14 @@ Lemma sigma_rooted_post_message :
  s0 <> owner ->
  sigma_rooted s0 (Post_message Message m b s1 s2) =
  (sigma_rooted s0 b + rooted_fun s0 s1 s2 m)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   unfold sigma_rooted in |- *.
   unfold Post_message in |- *.
   unfold change_queue in |- *.
   intros.
   rewrite sigma_table2_change.
   simpl in |- *.
-  omega.
+  auto with *.
   apply finite_site.
   apply finite_site.
 Qed.
@@ -83,13 +83,13 @@ Lemma sigma_rooted_collect_message :
  s0 <> owner ->
  sigma_rooted s0 (Collect_message Message b s1 s2) =
  (sigma_rooted s0 b - rooted_fun s0 s1 s2 m)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   unfold sigma_rooted, Collect_message, change_queue in |- *.
   intros.
   rewrite sigma_table2_change.
   rewrite (rooted_first_out s0 s1 s2 (b s1 s2) m).
   simpl in |- *.
-  omega.
+  auto with *.
   auto.
   apply finite_site.
   apply finite_site.
@@ -97,22 +97,22 @@ Qed.
 
 Lemma rooted_fun_positive_or_null :
  forall (s0 x y : Site) (a : Message), (rooted_fun s0 x y a >= 0)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros.
   unfold rooted_fun in |- *.
   elim a.
   case (eq_site_dec y s0).
-  intro; omega.
-  intro; omega.
+  intro; auto with *.
+  intro; auto with *.
   intro.
   case (eq_site_dec s s0).
   case (eq_site_dec y owner).
-  intros; omega.
-  intros; omega.
-  intros; omega.
+  intros; auto with *.
+  intros; auto with *.
+  intros; auto with *.
   case (eq_site_dec x s0).
-  intros; omega.
-  intros; omega.
+  intros; auto with *.
+  intros; auto with *.
 Qed.
 
 Lemma rooted_positive_or_null :
@@ -153,7 +153,7 @@ Lemma invariant2_ind :
  legal c ->
  st c s0 = sigma_rooted s0 (bm c) ->
  st (transition c t) s0 = sigma_rooted s0 (bm (transition c t)).
-Proof.
+Proof. (* This proof was automatically repaired. *)
   simple induction t.
 
   (* 1 *)
@@ -165,9 +165,9 @@ Proof.
   case (eq_site_dec s1 s0).
   intro; rewrite e.
   unfold update_table in |- *; rewrite here.
-  omega.
+  auto with *.
   intro; unfold update_table in |- *; rewrite elsewhere.
-  omega.
+  auto with *.
   auto.
   auto.
 
@@ -180,9 +180,9 @@ Proof.
   case (eq_site_dec s2 s0).
   intro; rewrite e0.
   unfold update_table in |- *; rewrite here.
-  omega.
+  auto with *.
   intros; unfold update_table in |- *; rewrite elsewhere.
-  omega.
+  auto with *.
   auto.
   auto.
   auto.
@@ -196,10 +196,10 @@ Proof.
   unfold update_table in |- *; rewrite elsewhere.
   case (eq_site_dec s3 s0).
   case (eq_site_dec owner owner).
-  intros; omega.
+  intros; auto with *.
   intro; elim n.
   auto.
-  intros; omega.
+  intros; auto with *.
   auto.
   auto.
   auto.
@@ -212,8 +212,8 @@ Proof.
   rewrite sigma_rooted_collect_message with (m := copy).
   unfold rooted_fun in |- *.
   case (eq_site_dec s1 s0).
-  intro; omega.
-  intro; omega.
+  intro; auto with *.
+  intro; auto with *.
   auto.
   auto.
   auto.
@@ -225,7 +225,7 @@ Proof.
   rewrite sigma_rooted_collect_message with (m := copy).
   unfold rooted_fun in |- *.
   rewrite case_ineq.
-  omega.
+  auto with *.
   auto.
   auto.
   auto.
@@ -238,8 +238,8 @@ Proof.
   unfold rooted_fun in |- *.
   case (eq_site_dec s1 s0).
   rewrite case_eq.
-  intro; omega.
-  intro; omega.
+  intro; auto with *.
+  intros; auto with *.
   auto.
   auto.
   auto.
@@ -250,7 +250,7 @@ Proof.
   rewrite sigma_rooted_post_message.
   unfold rooted_fun in |- *.
   rewrite case_ineq.
-  omega.  
+  auto with *.  
   auto.
   auto.
 Qed.
@@ -276,7 +276,7 @@ Lemma positive_st :
  forall (c : Config) (s0 s5 : Site),
  s0 <> owner ->
  legal c -> In_queue Message (inc_dec s0) (bm c s5 owner) -> (st c s0 > 0)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros c s0 s5 H HA.
   rewrite invariant2.
   unfold sigma_rooted in |- *.
@@ -313,9 +313,9 @@ Proof.
   generalize (H1 H4).
   intro.
   case (eq_site_dec owner s0).
-  intros; omega.
+  intros; auto with *.
   
-  intros; omega.
+  intros; auto with *.
   
   simpl in |- *.
   intros.
@@ -325,7 +325,7 @@ Proof.
   intro.
   generalize (rooted_positive_or_null s0 s5 owner q).
   intro.
-  omega.
+  auto with *.
   
   intro.
   elim n; auto.
@@ -339,7 +339,7 @@ Proof.
   intro.
   generalize (H1 H4).
   intro.
-  omega.
+  auto with *.
   
   simpl in |- *.
   intro.
@@ -350,9 +350,9 @@ Proof.
   generalize (H1 H4).
   intro.
   case (eq_site_dec s5 s0).
-  intro; omega.
+  intro; auto with *.
   
-  intro; omega.
+  intro; auto with *.
   
   auto.
   

@@ -37,7 +37,7 @@ Lemma direct_son_is_positive :
   reduce Message new_inc_count (bm c s owner) > 0)%Z.
 
 
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros.
   elim H0.
   intros.
@@ -48,7 +48,7 @@ Proof.
   generalize (dec_count_is_positive (bm c s0 owner)); intro.
   cut (reduce Message new_inc_count (bm c s0 owner) = 0%Z).
   intro.
-  omega.
+  auto with *.
   
   generalize H4.
   elim (bm c s0 owner).
@@ -71,7 +71,7 @@ Proof.
   
   simpl in |- *; intros.
   rewrite H7.
-  omega.
+  auto with *.
   
   intro.
   generalize (H8 s1).
@@ -79,8 +79,8 @@ Proof.
 Qed.
 
 Remark add_reduce : forall x : Z, (x > 0)%Z -> (x + 1 - 1 > 0)%Z.
-Proof.
-  intro; omega.
+Proof. (* This proof was automatically repaired. *)
+  intro; auto with *.
 Qed.
 
 Lemma safety1 :
@@ -141,7 +141,7 @@ Lemma safety2 :
  legal c ->
  forall s1 s2 : Site,
  In_queue Message copy (bm c s1 s2) -> (st c owner > 0)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros.
   elim (decide_inc_dec_in_queue c s2); intro.
   elim a; intros.
@@ -193,21 +193,21 @@ Proof.
   intro.
   cut (reduce Message copy_count (bm c owner s2) > 0)%Z.
   intro.
-  omega.
+  auto with *.
   
   apply reduce_in_queue_strictly_positive with (x := copy).
   intro; unfold copy_count in |- *.
   case a; intros.
-  omega.
+  auto with *.
   
-  omega.
+  auto with *.
   
-  omega.
+  auto with *.
   
   exact eq_message_dec.
   
   unfold copy_count in |- *; simpl in |- *.
-  omega.
+  auto with *.
   
   rewrite <- e; auto.
   
@@ -225,9 +225,9 @@ Proof.
   unfold Int in |- *.
   case (eq_bool_dec (rt c s2)).
   intro.
-  rewrite e0; simpl in |- *; omega.
+  rewrite e0; simpl in |- *; auto with *.
   
-  intro; rewrite e0; simpl in |- *; omega.
+  intros; case (rt c s2); auto with *.
   
   auto.
   
@@ -266,7 +266,7 @@ Proof.
   
   unfold rooted_fun in |- *.
   case (eq_site_dec s1 s1); intro.
-  omega.
+  auto with *.
   
   elim n0.
   auto.

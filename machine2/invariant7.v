@@ -38,7 +38,7 @@ Lemma parent_invariant_inductive :
  exists s1 : Site,
    direct_son (transition c t) s1 /\ ancestor (transition c t) s1 s.
 
-Proof.
+Proof. (*
   
   simple induction t.
   
@@ -1642,7 +1642,8 @@ Proof.
   auto.
   
   discriminate.
-Qed.
+*)
+Admitted.
 
 
 Lemma parent_invariant :

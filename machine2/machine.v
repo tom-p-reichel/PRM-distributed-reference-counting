@@ -48,28 +48,28 @@ Inductive Message : Set :=
   | copy : Message.
 
 Theorem eq_message_dec : eq_dec Message.
-Proof.
- unfold eq_dec in |- *; double induction a b; intros.
+Proof. (* This proof was automatically repaired. *)
+ unfold eq_dec in |- *.
+ 
+
+ intros.
+
+ decide equality.
+
+ 
+
+ case (eq_site_dec  s s0); intros.
  auto.
 
- right; discriminate.
+ right; auto.
 
- right; discriminate.
+ 
 
- right; discriminate.
+ 
 
- case (eq_site_dec s0 s); intros.
- rewrite e; auto.
+ 
 
- right; injection; auto.
-
- right; discriminate.
-
- right; discriminate.
-
- right; discriminate.
-
- auto.
+ 
 Qed.
 
 End MESSAGES.

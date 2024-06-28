@@ -535,7 +535,7 @@ Qed.
 Lemma st_rt :
  forall (c0 : Config) (s0 : Site),
  legal c0 -> s0 <> owner -> (st c0 s0 > 0)%Z -> rt c0 s0 = true.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros c0 s0 H.
   elim H.
   simpl in |- *.
@@ -544,7 +544,7 @@ Proof.
   cut (~ (0 > 0)%Z).
   intro.
   elim H2; auto.
-  omega.
+  auto with *.
 
   intros c t.
   elim t.
@@ -579,7 +579,7 @@ Proof.
   intro.
   rewrite e0; rewrite that_site.
   intro.
-  omega.
+  auto with *.
   intro; rewrite other_site; auto.
 
   (* 3 *)
@@ -628,7 +628,7 @@ Proof.
   rewrite <- e1 in H3.
   rewrite e in H3.
   absurd (0 > 0)%Z.
-  omega.
+  auto with *.
   auto.
   intro; unfold Reset_rec_table in |- *.
   rewrite other_site.

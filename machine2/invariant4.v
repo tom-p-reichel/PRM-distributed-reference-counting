@@ -45,7 +45,7 @@ Remark aux1 :
  st c owner =
  (sigma_receive_table (rt c) + sigma_weight (bm c) -
   sigma_table_but_owner Z (fun (_ : Site) (x : Z) => x) (st c) - 1)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros.
   unfold sigma_send_table in |- *.
   generalize (invariant1 c H).
@@ -53,7 +53,7 @@ Proof.
   rewrite sigma_sigma_but_owner.
   generalize (sigma_table_but_owner Z (fun (_ : Site) (x : Z) => x) (st c)).
   intros.
-  omega.
+  auto with *.
 Qed.
 
 
@@ -146,7 +146,7 @@ Remark aux5 :
     (bm c))%Z.
 
 
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros.
   rewrite <- sigma2_disjoint.
   rewrite <- sigma2_disjoint2.
@@ -166,14 +166,14 @@ Proof.
   intros; simpl in |- *.
   case (eq_site_dec s2 owner).
   case (eq_site_dec s1 owner).
-  intros; omega.
+  intros; auto with *.
   
-  intros; omega.
+  intros; auto with *.
   
   case (eq_site_dec s1 owner).
-  intros; omega.
+  intros; auto with *.
   
-  intros; omega.
+  intros; auto with *.
   
   intros.
   simpl in |- *.
@@ -195,12 +195,12 @@ Proof.
   intros.
   rewrite sigma_rooted_fun3.
   simpl in |- *.
-  omega.
+  auto with *.
   
   intros.
   rewrite sigma_rooted_fun5.
   simpl in |- *.
-  omega.
+  auto with *.
   
   apply finite_site.
   
@@ -213,7 +213,7 @@ Proof.
   intros.
   rewrite sigma_rooted_fun7.
   simpl in |- *.
-  omega.
+  auto with *.
   
   apply finite_site.
   
@@ -229,7 +229,7 @@ Proof.
     sigma_but Site owner eq_site_dec LS
       (fun s : Site => rooted_fun s owner s2 d0))%Z with
    (copy_count d0 - new_inc_count d0)%Z.
-  omega.
+  auto with *.
   
   unfold cardinal_count in |- *.
   unfold fun_sum in |- *.
@@ -261,7 +261,7 @@ Proof.
     sigma_but Site owner eq_site_dec LS
       (fun s : Site => rooted_fun s s1 s2 d0))%Z with 
    (- new_inc_count d0)%Z.
-  omega.
+  auto with *.
   
   simpl in |- *.
   generalize (H2 n0 n).
@@ -469,7 +469,7 @@ Lemma simpl_inc_sum :
  sigma_table Site LS Z (Z_id Site)
    (fun s1 : Site => reduce Message new_inc_count (bm c s1 owner)).
 
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros.
   unfold sigma2_table in |- *.
   generalize (inc_dec_owner2 c).
@@ -489,7 +489,7 @@ Proof.
   replace
    (sigma_but Site owner eq_site_dec LS
       (fun s : Site => reduce Message new_inc_count (b e s))) with 0%Z.
-  omega.
+  auto with *.
   
   rewrite sigma_but_null.
   auto.
@@ -528,8 +528,8 @@ Qed.
 Remark add_reduce :
  forall x y a u w z : Z,
  (y - a)%Z = (z + w - u)%Z -> (x + y - a - 1)%Z = (x + z + w - u - 1)%Z.
-Proof.
-intros; omega.
+Proof. (* This proof was automatically repaired. *)
+intros; auto with *.
 Qed.
 
 

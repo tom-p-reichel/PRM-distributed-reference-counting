@@ -62,14 +62,14 @@ Lemma sigma_weight_post_message :
  forall (m : Message) (s1 s2 : Site) (b : Bag_of_message),
  sigma_weight (Post_message Message m b s1 s2) =
  (sigma_weight b + cardinal_count m)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   unfold sigma_weight in |- *.
   unfold Post_message in |- *.
   unfold change_queue in |- *.
   intros.
   rewrite sigma_table2_change.
   simpl in |- *.
-  omega.
+  auto with *.
   apply finite_site.
   apply finite_site.
 Qed.
@@ -79,14 +79,14 @@ Lemma sigma_weight_collect_message :
  first Message (b s1 s2) = value Message m ->
  sigma_weight (Collect_message Message b s1 s2) =
  (sigma_weight b - cardinal_count m)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   unfold sigma_weight in |- *.
   unfold Collect_message in |- *.
   unfold change_queue in |- *.
   intros.
   rewrite sigma_table2_change.
   rewrite cardinal_first_out with (m := m).
-  omega.
+  auto with *.
   auto.
   apply finite_site.
   apply finite_site.

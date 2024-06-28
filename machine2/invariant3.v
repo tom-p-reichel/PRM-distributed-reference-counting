@@ -530,7 +530,7 @@ Lemma sigma_rooted_fun1 :
  ~ In s2 LS ->
  sigma_but Site owner eq_site_dec LS (fun s : Site => rooted_fun s s1 s2 d) =
  0%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros s s1 s2 d H.
   elim LS.
   simpl in |- *.
@@ -558,7 +558,7 @@ Proof.
   left; auto.
   intro.
   rewrite sigma_rooted_fun2.
-  omega.
+  auto with *.
   auto.
   auto.
   auto.
@@ -568,19 +568,19 @@ Qed.
 
 Lemma add_reduce4 :
  forall x y z a : Z, (x + y)%Z = (z + a)%Z -> (x - a)%Z = (z - y)%Z.
-Proof.
-intros; omega.
+Proof. (* This proof was automatically repaired. *)
+intros; auto with *.
 Qed.
 
 Lemma add_reduce5 :
  forall x y z a : Z, (x - a)%Z = (z - y)%Z -> x = (a + z - y)%Z.
-Proof.
-intros; omega.
+Proof. (* This proof was automatically repaired. *)
+intros; auto with *.
 Qed.
 
 Lemma add_reduce6 : forall x y z : Z, x = (z + y)%Z -> (x - z)%Z = y.
-Proof.
-intros; omega.
+Proof. (* This proof was automatically repaired. *)
+intros; auto with *.
 Qed.
 
 

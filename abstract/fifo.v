@@ -89,21 +89,21 @@ Fixpoint card (d : data) (q : queue) {struct q} : Z :=
   end.
 
 Lemma card_pos : forall (d : data) (q : queue), (card d q >= 0)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
  simple induction q; simpl in |- *.
- omega.
+ auto with *.
 
- intros; case (eq_data_dec d d0); intros; omega.
+ intros; case (eq_data_dec  d d0); intros; auto with *.
 Qed.
 
 Lemma card_strct_pos :
  forall (d : data) (q : queue), In_queue d q -> (card d q > 0)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
  simple induction q; simpl in |- *.
  contradiction.
 
  intros; case (eq_data_dec d d0); intro.
- generalize (card_pos d q0); omega.
+ generalize (card_pos  d q0); auto with *.
 
  elim H0; intro.
  absurd (d = d0); trivial.
@@ -284,13 +284,13 @@ Lemma firstout_pred_card :
  first data q = value data d ->
  card data eq_data_dec d (first_out data q) =
  (card data eq_data_dec d q - 1)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
  simple induction q.
  simpl in |- *; intros H; discriminate H.
 
  simpl in |- *; intros d0 q0; case q0.
  case (eq_data_dec d d0); intros.
- simpl in |- *; omega.
+ simpl in |- *; auto with *.
 
  injection H0; intros.
  absurd (d0 = d); auto.
@@ -298,7 +298,7 @@ Proof.
  case (eq_data_dec d d0); intros.
  rewrite <- e; rewrite input_S_card.
  rewrite H.
- omega.
+ auto with *.
  
  trivial.
 

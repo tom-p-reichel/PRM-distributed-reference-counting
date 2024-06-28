@@ -199,24 +199,24 @@ Lemma count_inc_and_dec_alt_queue :
  forall q : queue Message,
  alternate q ->
  (reduce Message dec_count q + 1 >= reduce Message new_inc_count q)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros.
   elim H.
-  simpl in |- *; omega.
+  simpl in |- *; auto with *.
   
-  intro; simpl in |- *; omega.
+  intro; simpl in |- *; auto with *.
   
   simpl in |- *; intros.
   generalize H0; case m; simpl in |- *.
-  intro; omega.
+  intro; auto with *.
   
   intros.
   elim (H3 s); auto.
   
-  intro; omega.
+  intro; auto with *.
   
   simpl in |- *; intros.
-  omega.
+  auto with *.
 Qed.
 
 
@@ -225,10 +225,10 @@ Lemma count_inc_and_dec_D_queue :
  alternate q ->
  D_queue q ->
  (reduce Message dec_count q >= reduce Message new_inc_count q)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros q H.
   elim H; intros.
-  simpl in |- *; omega.
+  simpl in |- *; auto with *.
   
   absurd (D_queue (input Message (inc_dec s0) (empty Message))).
   apply not_D_queue.
@@ -238,7 +238,7 @@ Proof.
   generalize H3.
   case m.
   intro; simpl in |- *.
-  generalize (count_inc_and_dec_alt_queue qm H1); intro; omega.
+  generalize (count_inc_and_dec_alt_queue  qm H1); intro; auto with *.
   
   intros.
   absurd (D_queue (input Message (inc_dec s) qm)).
@@ -262,20 +262,20 @@ Qed.
 
 Lemma copy_count_is_positive :
  forall q : queue Message, (reduce Message copy_count q >= 0)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros.
   apply reduce_positive_or_null.
   intro.
-  elim a; simpl in |- *; intros; omega.
+  elim a; simpl in |- *; auto with *.
 Qed.
 
 Lemma dec_count_is_positive :
  forall q : queue Message, (reduce Message dec_count q >= 0)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros.
   apply reduce_positive_or_null.
   intro.
-  elim a; simpl in |- *; intros; omega.
+  elim a; simpl in |- *; auto with *.
 Qed.
 
 
@@ -287,17 +287,17 @@ Lemma invariant5 :
   reduce Message copy_count (bm c owner s) -
   reduce Message new_inc_count (bm c s owner) >= 0)%Z.
 
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros.
   generalize (copy_count_is_positive (bm c owner s)); intro.
   generalize (legal_alternate s c H); intro.
   case (eq_bool_dec (rt c s)); intro; rewrite e; unfold Int in |- *.
   generalize (count_inc_and_dec_alt_queue (bm c s owner) H1); intro.
-  omega.
+  auto with *.
   
   generalize (false_rt_D_queue c s H e); intro.
   generalize (count_inc_and_dec_D_queue (bm c s owner) H1 H2); intro.
-  omega.
+  auto with *.
 Qed.
 
 
@@ -319,8 +319,8 @@ Qed.
 
 
 Remark add_reduce : forall x : Z, (x + 1 - 1)%Z = x.
-Proof.
-  intro; omega.
+Proof. (* This proof was automatically repaired. *)
+  intro; auto with *.
 Qed.
 
 

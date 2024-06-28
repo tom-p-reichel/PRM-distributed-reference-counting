@@ -19,8 +19,10 @@
 (* fichier de bibliotheque*)
 
 Require Export Arith.
-Require Export Omega.
+Require Export Lia.
 Require Import List.
+Require Export ZArith.
+
 
 Global Set Asymmetric Patterns.
 

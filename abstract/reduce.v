@@ -35,9 +35,9 @@ Hypothesis positive_function : forall a : E, (f a > 0)%Z.
 
 Lemma sum_positive :
  forall a b : Z, (a >= 0)%Z -> (b > 0)%Z -> (a + b >= 0)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
  intros a b H H0.
- omega.
+ auto with *.
 Qed.
 
 Lemma reduce_nil : reduce (empty E) = 0%Z.
@@ -62,11 +62,11 @@ Qed.
 
 
 Lemma reduce_positive : forall q : queue E, (reduce q >= 0)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros q.
   elim q.
   simpl in |- *.
-  omega.
+  auto with *.
   intros d q0 H.
   simpl in |- *.
   apply sum_positive.
@@ -85,7 +85,7 @@ Lemma reduce_append :
  forall (q1 : queue E) (d : E) (q2 : queue E),
  reduce (append E q1 (input E d q2)) = (reduce (append E q1 q2) + f d)%Z.
 
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intro q1.
   elim q1.
   intros d q2.
@@ -96,7 +96,7 @@ Proof.
   rewrite <- input_append.
   simpl in |- *.
   rewrite H.
-  omega.
+  auto with *.
 Qed.
 
 (* And now two instantiations *)
@@ -124,10 +124,10 @@ Qed.
 Lemma reduce_append_nil2_symmetric :
  forall (q1 : queue E) (d : E),
  reduce q1 = (reduce (append E q1 (input E d (empty E))) - f d)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros q1 d.
   rewrite (reduce_append_nil2 q1 d).
-  omega.
+  auto with *.
 Qed. 
 
 End REDUCE.
@@ -155,7 +155,7 @@ Variable f : E -> Z.
 Lemma disjoint_reduce :
  forall (f1 f2 : E -> Z) (q : queue E),
  reduce E (fun_sum f1 f2) q = (reduce E f1 q + reduce E f2 q)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   simple induction q.
   simpl in |- *.
   auto.
@@ -164,20 +164,20 @@ Proof.
   simpl in |- *.
   rewrite H.
   unfold fun_sum in |- *.
-  omega.
+  ring.
 Qed.
 
 Lemma disjoint_reduce3 :
  forall (f1 f2 : E -> Z) (q : queue E),
  reduce E (fun_minus f1 f2) q = (reduce E f1 q - reduce E f2 q)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   simple induction q.
   simpl in |- *; auto.
   intros d q0 H.
   simpl in |- *.
   rewrite H.
   unfold fun_minus in |- *.
-  omega.
+  auto with *.
 Qed.
 
 Lemma reduce_simpl :
@@ -232,17 +232,17 @@ Variable f : E -> Z.
 Hypothesis positive_function : forall a : E, (f a >= 0)%Z.
 
 Lemma reduce_positive_or_null : forall q : queue E, (reduce E f q >= 0)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   intros q.
   elim q.
   simpl in |- *.
-  omega.
+  auto with *.
   
   intros d q0 H.
   simpl in |- *.
   generalize (positive_function d).
   intro H0.
-  omega.
+  auto with *.
 Qed.
 
 End reduce_pos.
@@ -260,7 +260,7 @@ Hypothesis eq_E_dec : eq_dec E.
 Lemma reduce_in_queue_strictly_positive :
  forall (x : E) (q : queue E),
  (f x > 0)%Z -> In_queue E x q -> (reduce E f q > 0)%Z.
-Proof.
+Proof. (* This proof was automatically repaired. *)
   simple induction q; simpl in |- *.
   intuition.
   
@@ -269,7 +269,7 @@ Proof.
   rewrite e; intros.
   generalize (reduce_positive_or_null E f positive_function q0); intro.
   clear H.
-  omega.
+  auto with *.
   
   intros q0 H H0 H1.
   elim H1; intro.
@@ -277,7 +277,7 @@ Proof.
   
   generalize (positive_function d); intro.
   generalize (H H0 H2); intro.
-  omega.
+  auto with *.
 Qed.
 End reduce_strictly_pos.
 
